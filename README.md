@@ -1,2 +1,2 @@
-# Team code
-Pilot
+# Pilot
+Pilot project
