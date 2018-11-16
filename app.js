@@ -1,3 +1,10 @@
-import exp from 'express';
+import express from 'express';
+import consign from 'consign';
 
-console.log("It workss");
+const app = express();
+
+consign()
+.include('libs/configs.js')
+.then('routes')
+.include('libs/boot.js')
+.into(app);
