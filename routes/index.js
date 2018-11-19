@@ -1,3 +1,10 @@
+import mongojs from 'mongojs';
+
+
+var db = mongojs('mongodb://SRUser:password1@13.59.12.41:27017/StreamRewards', ['Users']);
+
+
+
 module.exports = app =>
 {
 app.get('/',(req,res) =>{
@@ -7,13 +14,36 @@ app.get('/',(req,res) =>{
     })
 });
 
-app.get('/test',(req,res) =>{
+app.get('/users',(req,res) =>{
 
-    res.json({
-        respones: "yes its working",
-        testData:[1,2,3,4]
+    db.users.find((err,users) => {
+
+            res.json({
+                myUsers: users
+            })
+
     })
+
+
 });
+
+
+app.get('/usersadd',(req,res) =>{
+
+db.users.insert({name:'myname'},(err,obj) => {
+
+res.json({
+
+response:obj,
+err:err
+
+})
+
+});
+
+
+});
+
 
 
 };
